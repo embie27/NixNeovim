@@ -101,6 +101,6 @@ in
   extraConfig = helpers.activatedConfig plugins;
 
   # list of the sources config for cmp
-  config = mapAttrsToList (name: attrs: { name = name; }) (filterAttrs (k: v: v.enable) cfg-plugin);
+  config = mapAttrsToList (name: attrs: (removeAttrs attrs ["enable"]) // { name = name; }) (filterAttrs (k: v: v.enable) cfg-plugin);
 
 }
